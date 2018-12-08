@@ -14,7 +14,8 @@ class ExpertsController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.experts_admin');
+        return view('admin.pages.experts_admin')
+        ->with(['menu'=>'experts_admin']);
     }
 
     /**

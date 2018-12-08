@@ -4,7 +4,10 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+
 use App\categories;
+use Illuminate\Support\Facades\Validator;
 
 class CateroryController extends Controller
 {
@@ -16,7 +19,8 @@ class CateroryController extends Controller
     public function index()
     {
         $categories = categories::all();
-         return view('admin.pages.category_admin',compact('categories'));
+        return view('admin.pages.category_admin',compact('categories'))
+        ->with(['menu'=>'category_admin']);
     }
 
     /**
@@ -29,17 +33,26 @@ class CateroryController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        // return $request->all();
-        categories::create($request->all());
-       return redirect()->route('category_admin.index');
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:categories|max:5',
+            ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('category_admin.index')
+            ->withErrors($validator)
+            ->withInput();
+        }
+        $Inserted = categories::create($request->all()); 
+        if($Inserted)
+        {
+            return redirect()->route('category_admin.index')
+            ->with(['message' => 'Created Successfully.']);
+        }else{
+            return redirect()->route('category_admin.index')
+            ->with(['message' => "Your Data Are Not Inserted!"]);
+        }
     }
 
     /**
@@ -73,7 +86,26 @@ class CateroryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:categories|max:2555',
+            ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('category_admin.index')
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $updated = categories::where('id',$id)->update(['name' => $request->name]); 
+        if($updated)
+        {
+            return redirect()->route('category_admin.index')
+            ->with(['message' => 'Created Successfully.']);
+        }else{
+            return redirect()->route('category_admin.index')
+            ->with(['message' => "Your Data Are Not Inserted!"]);
+        }
+        dd($request->all());
     }
 
     /**

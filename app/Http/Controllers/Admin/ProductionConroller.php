@@ -14,7 +14,8 @@ class ProductionConroller extends Controller
      */
     public function index()
     {
-        return view('admin.pages.production_admin');
+        return view('admin.pages.production_admin')
+        ->with(['menu'=>'production_admin']);
     }
 
     /**

@@ -14,7 +14,8 @@ class DashboardConroller extends Controller
      */
     public function index()
     {
-        return view('admin.pages.dashboard_admin');
+        return view('admin.pages.dashboard_admin')
+        ->with(['menu'=>'dashboard_admin']);
     }
 
     /**

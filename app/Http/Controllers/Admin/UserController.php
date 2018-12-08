@@ -14,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.user_admin');
+        return view('admin.pages.user_admin')
+        ->with(['menu'=>'user_admin']);
     }
 
     /**

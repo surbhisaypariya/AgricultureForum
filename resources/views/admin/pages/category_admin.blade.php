@@ -12,7 +12,10 @@
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">Dashboard</a>
+        <a href="{{ route('dashboard_admin.index') }}">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item">
+        <?php echo ucfirst(explode(".",Request::route()->getName())[0]); ?>
       </li>
     </ol>
 
@@ -21,94 +24,122 @@
     <hr>
 
 
-
-
-    <div class="row">
-      <div  class="col-md-6">
-        <button class="btn btn-primary float-right" data-toggle="modal" data-target="#modalProduct">
-          Add Category
-        </button>
-        <div class="modal" id="modalProduct">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <form method="POST" action="{{ route('category_admin.store') }}" enctype="multipart/form-data">
-                @csrf
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Add Category</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                  <div class="form-group"> 
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter category name">
-                  </div>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-warning">Add</button>
-                </div>
-              </form>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><br><br>
+    @include('widgets.error') 
+    @include('widgets.success') 
 
     <div class="card mb-3">
       <div class="card-header">
-        <i class="fas fa-table"></i>
-      Category</div>
+        <span class="" style="font-size: 20px;">
+          <i class="fas fa-table"></i>
+          Category
+        </span>
+        <span class="float-right">
+          <button class="btn btn-primary" data-toggle="modal" data-target="#modalProduct">
+            Add Category
+          </button>
+        </span>
+      </div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
                 <th>Category Name</th>
-                <th>Request</th>
+                <th colspan="2" class="text-center">Action</th>
               </tr>
             </thead>
 
 
             <tbody>
-             @foreach($categories as $category)
-             <tr>
-              <td width="80%">{{$category->name}}</td>
-              <td>
-                <a href="{{ $category->id }}" class="btn btn-success" >
-                  <i class="fas fa-check-circle"></i>
-                  Edit
-                </a>
-              </td>
+              @foreach($categories as $category)
+              <tr>
+                <td hidden="" ></td>
+                <td width="80%" >{{$category->name}}</td>
                 <td>
-                <form method="post" action="/category_admin/{{$category->id}}">
-                  @csrf
-                  @method("DELETE")
-                  <button type="submit" name="delete" value="DELETE" class="btn btn-danger" >
-                    <i class="fas fa-trash-alt"></i>
-                    Delete
-               </button>
-                </form>
-              </td>
-            </tr>
-            @endforeach
+                  <button class="edit btn btn-success" data-edit-id="{{$category->id}}" data-edit-name="{{ $category->name }}">
+                    <i class="fas fa-check-circle"></i>
+                    Edit
+                  </button>
+                </td>
+                <td>
+                  <form method="post" action="/category_admin/{{$category->id}}">
+                    @csrf
+                    @method("DELETE")
+                    <button type="submit" name="delete" value="DELETE" class="btn btn-danger" >
+                      <i class="fas fa-trash-alt"></i>
+                      Delete
+                    </button>
+                  </form>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
 
+  <!-- Add Model -->
+  <div class="modal" id="modalProduct">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form method="POST" action="{{ route('category_admin.store') }}" enctype="multipart/form-data">
+          @csrf
 
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Add Category</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
 
-          </tbody>
-        </table>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="form-group"> 
+              <input type="text" name="name" id="name" class="form-control" placeholder="Enter category name">
+            </div>
+          </div>
 
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-warning">Add</button>
+          </div>
+        </form>
 
       </div>
     </div>
   </div>
 
-</div>
-<!-- /.container-fluid -->
+  <!-- Edit Model -->
+  <div class="modal" id="editModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Category</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <form method="POST" action="" id="editform" enctype="multipart/form-data">
+          @csrf
+          <input type="hidden" name="_method" value="PATCH">
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="form-group"> 
+            <input type="text" name="name" id="name" class="form-control">
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-warning">Update</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
 
 
 
@@ -122,4 +153,17 @@
 <a class="scroll-to-top rounded" href="#page-top">
 	<i class="fas fa-angle-up"></i>
 </a>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+  $(document).on('click', '.edit', function () {
+    var id = $(this).data("edit-id");
+    var name = $(this).data("edit-name");
+
+    $('#editform #name').val(name);
+    $('#editform').attr('action', '/category_admin/' + id);
+    $('#editModal').modal('show');
+  });
+</script>
 @endsection

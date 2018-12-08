@@ -20,5 +20,6 @@
       </div>
   </footer>
   @include('admin.includes.scriptFiles')
+  @yield('script')
 </body>
 </html>
