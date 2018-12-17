@@ -14,8 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.user_admin')
-        ->with(['menu'=>'user_admin']);
+        return view('admin.pages.registered_admin')
+        ->with(['menu'=>'registered_admin']);
     }
 
     /**
@@ -82,5 +82,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function user_state($id){
+        echo $id;
     }
 }

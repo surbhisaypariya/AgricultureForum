@@ -40,6 +40,9 @@ class ForumController extends Controller
     public function store(Request $request)
     {
         // return $request->all();
+        // $request->merge(['user_id'=>Auth::user()->id]);
+        $request->merge(['user_id' => 1]);
+        // dd($request->all());
         questions::create($request->all());
         return redirect()->route('forum_user.index');
     }

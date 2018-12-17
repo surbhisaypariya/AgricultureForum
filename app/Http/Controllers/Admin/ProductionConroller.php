@@ -5,6 +5,9 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+
+use App\product_info;
+use Illuminate\Support\Facades\Validator;
 class ProductionConroller extends Controller
 {
     /**
@@ -36,7 +39,25 @@ class ProductionConroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'required|unique:categories|max:5',
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return redirect()->route('production_admin.index')
+        //     ->withErrors($validator)
+        //     ->withInput();
+        // }
+        $Inserted = product_info::create($request->all()); 
+        if($Inserted)
+        {
+            return redirect()->route('production_admin.index')
+            ->with(['message' => 'Created Successfully.']);
+        }else{
+            return redirect()->route('production_admin.index')
+            ->with(['message' => "Your Data Are Not Inserted!"]);
+        }
     }
 
     /**

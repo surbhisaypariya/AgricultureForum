@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\expert;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-
-use App\user_profiles;
-use Illuminate\Support\Facades\Validator;
-
-class MakeprofileController extends Controller
+class Expert_loginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +14,7 @@ class MakeprofileController extends Controller
      */
     public function index()
     {
-        return view('user.pages.registration_user');
+        return view('expert.pages.login_expert');
     }
 
     /**
@@ -39,39 +35,7 @@ class MakeprofileController extends Controller
      */
     public function store(Request $request)
     {
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:50',
-            'address' => 'required|string|max:225',
-            'email' => 'required|email',
-            // 'mobile_no'=>'required|numeric|max:12|min:10',
-            'test_reports'=>'required',
-            'seeds_use'=>'required',
-            'username'=>'required',
-            'password'=>'required|max:20|min:8|confirmed',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('makeprofile_user.index')
-            ->withErrors($validator)
-            ->withInput();
-        }
-
-
-        if($request->hasFile('photo')){
-            $image = $request->file('photo');
-            $name = $image->getClientOriginalName();
-            $destinationPath = public_path('images');
-            $request->photo = $image->move($destinationPath, $name);
-            // $request->photo = $name; 
-            // return $request->photo;
-        }else{
-            $request->photo = "No Image";
-        }
-
-        user_profiles::create($request->all());
-        return redirect()->route('makeprofile_user.index');
+        //
     }
 
     /**

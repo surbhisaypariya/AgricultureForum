@@ -36,7 +36,7 @@ class CateroryController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:categories|max:5',
+            'name' => 'required|unique:categories',
             ]);
 
         if ($validator->fails()) {

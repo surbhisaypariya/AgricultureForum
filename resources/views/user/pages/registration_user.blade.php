@@ -17,51 +17,51 @@
       @endif
       
       <h2>Make a Profile</h2>
-      <form action="{{ route('makeprofile_user.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('registration_user.store') }}" method="POST" enctype="multipart/form-data">
         @csrf 
         <div class="row">
           <div class="col-md-8">
             <div class="form-group">
               <label for="Name">Name:</label>
-              <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+              <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="{{ old('name') }}">
             </div>
 
             <div class="form-group">
               <label for="Address">Address:</label>
-              <textarea class="form-control" id="address" placeholder="Enter address" name="address"></textarea>
+              <textarea class="form-control" id="address" placeholder="Enter address" name="address" value="{{ old('address') }}"></textarea>
             </div>
 
             <div class="form-group">
               <label for="email">Email:</label>
-              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ old('email') }}">
             </div>
 
             <div class="form-group">
               <label for="Mobile no">Mobile no:</label>
-              <input type="number" class="form-control" id="number" placeholder="Enter number" name="mobile_no">
+              <input type="number" class="form-control" id="number" placeholder="Enter number" name="mobile_no" value="{{ old('mobile_no') }}">
             </div>
 
             <div class="form-group">
               <label for="test_report">Test-Report:</label>
-              <input type="file"  id="test_reports"  name="test_reports">
+              <input type="file"  id="test_reports"  name="test_reports" value="{{ old('test_reports') }}">
             </div>
 
             <div class="form-group">
               <label for="seeds-uses">Seeds-uses:</label>
-              <input type="text" class="form-control" id="seeds_use" placeholder="Enter seeds-uses" name="seeds_use">
+              <input type="text" class="form-control" id="seeds_use" placeholder="Enter seeds-uses" name="seeds_use" value="{{ old('seeds_use') }}">
             </div>
 
             <div class="form-group">
               <label for="Username">Username:</label>
-              <input type="text"  id="username" class="form-control" name="username" placeholder="Enter username">
+              <input type="text"  id="username" class="form-control" name="username" placeholder="Enter username" value="{{ old('username') }}">
             </div>
             <div class="form-group">
               <label for="Password:">Password:</label>
-              <input type="text"  id="password" class="form-control" name="password" placeholder="Enter password">
+              <input type="password"  id="password" class="form-control" name="password" placeholder="Enter password" value="{{ old('password') }}">
             </div>
             <div class="form-group">
               <label for="re-password:">Re-Enter Password:</label>
-              <input type="text"  id="repassword" class="form-control" name="re_pass" placeholder="Re Enter password">
+              <input type="password"  id="repassword" class="form-control" name="password_confirmation" placeholder="Re Enter password">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
             <button type="Reset" class="btn btn-danger">Reset</button>

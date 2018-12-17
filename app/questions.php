@@ -11,7 +11,10 @@ class questions extends Model
 
     protected $fillable = [
         'user_id', 'category_id', 'question',
+
     ];
+
+    protected $hidden = ['remember_token',];
     
     public function user()
     {

@@ -22,21 +22,21 @@
 	</div>
 
 	<!-- /.container-fluid -->
-<div class="container-fluid">
+  <div class="container-fluid">
 
 
-          <!-- Icon Cards-->
-          <div class="row">
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-primary o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-comments"></i>
-                  </div>
-                  <div class="mr-5">No. of users</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                  <span class="float-left">View Details</span>
+    <!-- Icon Cards-->
+    <div class="row">
+      <div class="col-xl-3 col-sm-6 mb-3">
+        <div class="card text-white bg-primary o-hidden h-100">
+          <div class="card-body">
+            <div class="card-body-icon">
+              <i class="fas fa-fw fa-comments"></i>
+            </div>
+            <div class="mr-5">No. of users</div>
+          </div>
+          <a class="card-footer text-white clearfix small z-1" href="#">
+            <span class="float-left">View Details</span>
                   <!-- <span class="float-right">
                     <i class="fas fa-angle-right"></i>
                   </span> -->
@@ -87,25 +87,16 @@
               </div>
             </div>
           </div>
-
         </div>
-	<!-- Sticky Footer -->
-	<footer class="sticky-footer">
-		<div class="container my-auto">
-			<div class="copyright text-center my-auto">
-				<span>Copyright © Your Website 2018</span>
-			</div>
-		</div>
-	</footer>
 
-</div>
-<!-- /.content-wrapper -->
+      </div>
+      <!-- /.content-wrapper -->
 
 
-<!-- /#wrapper -->
+      <!-- /#wrapper -->
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-	<i class="fas fa-angle-up"></i>
-</a>
-@endsection
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded" href="#page-top">
+       <i class="fas fa-angle-up"></i>
+     </a>
+     @endsection

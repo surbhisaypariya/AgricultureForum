@@ -16,6 +16,7 @@ class CreateExpertProfilesTable extends Migration
         Schema::create('expert_profiles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('address');
             $table->bigInteger('mobile_no');
             $table->string('email',50)->unique();
             $table->string('category');

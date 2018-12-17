@@ -14,15 +14,15 @@
             </button></a>
           </li>&nbsp;
           <li>
-            <a href="{{ URL::to('makeprofile_expert') }}">
+            <a href="{{ URL::to('registration_expert') }}">
             <button class="btn btn-info " type="button" >
               <i class="fa fa-user" >  </i> 
-              Make Profile
+              Registration
             </button>
           </a>
           </li>&nbsp;
           <li>
-            <a href="{{ URL::to('login') }}">
+            <a href="{{ URL::to('login_expert') }}">
             <button class="btn btn-info " type="button" >
               <i class="fa fa-sign-in" >  </i> 
               login
