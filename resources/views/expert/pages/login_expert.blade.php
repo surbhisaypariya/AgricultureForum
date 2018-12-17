@@ -14,7 +14,7 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-4" style="background-color:white;">
 				<img src="expert/image/user.png" style="align:center;margin-left:60px;">
-				<form method="POST" action="{{ route('login_expert') }}">
+				<form method="POST">
 					@csrf
 					<div class="form-group">
 						<label for="email" class="fa fa-user"> Email:</label>
