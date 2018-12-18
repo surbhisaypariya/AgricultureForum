@@ -11,7 +11,18 @@
     <button type="submit"><i class="fa fa-search"></i></button>
   </div>
 
-</div><br><br>
+</div>
+<br>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<br>
 <form method="POST" action="{{ route('forum_user.store') }}">
   @csrf
   <div class="row">
@@ -22,7 +33,6 @@
 
     <div class="col-md-10">
       <select class="form-control" name="category_id">
-       
         @foreach($categories as $category)
         <option value="{{$category->id}}">{{$category->name}}</option>
         @endforeach
@@ -41,13 +51,45 @@
   </div>
 </form>
 
+@foreach($questions as $question)
 <hr class="hr1">
 
-<b>Questions:</b>
-<p>ndf;kaniiuvbeiuanvknvvbdunv</p>
-<b>Answer:</b>
-<p>vfdvsndfovnoifvvdf</p>
-
+<div class="row">
+  <div class="col-md-12 ">
+    <div class="row">
+      <div class="col-md-1">
+        <h3>
+          <span class="badge badge-pill badge-dark">  
+            Q{{ $question->id }}
+          </span>
+        </h3>
+      </div>
+      <div class="col-md-11">
+        <strong>{{ $question->question }}</strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10">
+        <a href="#{{ $question->id }}"> 
+          <h5>Answers 
+            <span class="badge badge-secondary">New</span>
+          </h5>
+        </a>
+      </div>
+      <div class="col-md-2 ">
+        <div class="row">
+          <div class="col-md-6">
+            <strong>{{ $question->category->name }}</strong>
+          </div>
+          <div class="col-md-6">
+            <strong class="float-right">User {{ $question->user_id }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
 
 </div>
 @endsection

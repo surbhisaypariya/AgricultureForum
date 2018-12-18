@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Hash;
 
 use App\user_profiles;
 use Illuminate\Support\Facades\Validator;
@@ -69,7 +70,7 @@ class MakeprofileController extends Controller
         }else{
             $request->photo = "No Image";
         }
-
+        $request->merge(['password'=>Hash::make($request->password)]);
         user_profiles::create($request->all());
         return redirect()->route('registration_user.index');
     }

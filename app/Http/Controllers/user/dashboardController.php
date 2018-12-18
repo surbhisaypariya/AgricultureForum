@@ -5,6 +5,8 @@ namespace App\Http\Controllers\user;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\questions;
+
 class dashboardController extends Controller
 {
     /**
@@ -14,7 +16,8 @@ class dashboardController extends Controller
      */
     public function index()
     {
-         return view('user.pages.dashboard_user');
+        $questions = questions::count();
+         return view('user.pages.dashboard_user',compact('questions'));
     }
 
     /**

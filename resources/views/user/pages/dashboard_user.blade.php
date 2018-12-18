@@ -75,11 +75,13 @@
             <div class="card-body-icon">
               <i class="fa fa-question"></i>
             </div>
-            <div class="mr-5">Questions</div>
+            <div class="mr-5">Number of Questions</div>
           </div>
           <p class="card-footer text-white clearfix small z-1" href="#">
-            <span class="float-left">Questions:</span>
-
+            <h5 class="float-left">
+            <span class="float-right">Questions: </span>
+              {{ $questions }}
+            </h5>
           </p>
         </div>
       </div>

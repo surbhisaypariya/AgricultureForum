@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 
 class User_loginController extends Controller
 {
+
+    public function __construct()
+    {
+
+    }
     /**
      * Display a listing of the resource.
      *

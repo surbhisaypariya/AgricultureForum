@@ -19,7 +19,12 @@
 						User Login
 					</center>
 				</h2>
-				<form method="POST" >
+				@foreach($errors->all() as $error)
+					<ol>
+						<li>{{$error}}</li>
+					</ol>
+				@endforeach
+				<form method="POST" action="{{ route('login') }}" >
 					@csrf
 					<div class="form-group">
 						<label for="email" class="fa fa-user"> Email:</label>

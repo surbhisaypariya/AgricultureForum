@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\questions;
 use App\categories;
+use Illuminate\Support\Facades\Validator;
 
 class ForumController extends Controller
 {
@@ -16,9 +17,11 @@ class ForumController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+
+        $questions = questions::with('category')->orderBy('id','DESC')->get();
         $categories = categories::all();
-        return view('user.pages.forum_user',compact('categories'));
+        return view('user.pages.forum_user',compact('categories','questions'));
     }
 
     /**
@@ -39,8 +42,16 @@ class ForumController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
-        // $request->merge(['user_id'=>Auth::user()->id]);
+        $validator = Validator::make($request->all(), [
+            'category_id' => 'required',
+            'question' => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('forum_user.index')
+            ->withErrors($validator)
+            ->withInput();
+        }
+
         $request->merge(['user_id' => 1]);
         // dd($request->all());
         questions::create($request->all());
