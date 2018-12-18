@@ -13,7 +13,12 @@
 		<div class="row" style="margin-top:120px;">
 			<div class="col-md-4"></div>
 			<div class="col-md-4" style="background-color:white;">
-				<img src="user/image/user.png" style="align:center;margin-left:60px;">
+				<!-- <img src="user/image/user.png" style="align:center;margin-left:60px;"> -->
+				<h2>
+					<center>
+						User Login
+					</center>
+				</h2>
 				<form method="POST" >
 					@csrf
 					<div class="form-group">

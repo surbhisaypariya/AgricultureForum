@@ -14,8 +14,9 @@ class User_loginController extends Controller
      */
     public function index()
     {
-        // return "bnvc";
-        return view('user.pages.login_user');
+            // return "bnvc";
+        return view('user.pages.dashboard_user');
+
     }
 
     /**

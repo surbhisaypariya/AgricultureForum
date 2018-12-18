@@ -22,7 +22,7 @@
           </a>
           </li>&nbsp;
           <li>
-            <a href="{{ URL::to('login_user') }}">
+            <a href="{{ URL::to('user_login') }}">
             <button class="btn btn-info " type="button" >
               <i class="fa fa-sign-in" >  </i> 
               login

@@ -44,7 +44,7 @@ class MakeprofileController extends Controller
             'name' => 'required|string|max:50',
             'address' => 'required|string|max:225',
             'email' => 'required|email',
-            // 'mobile_no'=>'required|numeric|max:12|min:10',
+            'mobile_no'=>'required|numeric',
             'test_reports'=>'required',
             'seeds_use'=>'required',
             'username'=>'required',
@@ -53,7 +53,7 @@ class MakeprofileController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('makeprofile_user.index')
+            return redirect()->route('registration_user.index')
             ->withErrors($validator)
             ->withInput();
         }
@@ -71,7 +71,7 @@ class MakeprofileController extends Controller
         }
 
         user_profiles::create($request->all());
-        return redirect()->route('makeprofile_user.index');
+        return redirect()->route('registration_user.index');
     }
 
     /**

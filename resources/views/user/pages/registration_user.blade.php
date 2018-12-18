@@ -53,7 +53,7 @@
 
             <div class="form-group">
               <label for="Username">Username:</label>
-              <input type="text"  id="username" class="form-control" name="username" placeholder="Enter username" value="{{ old('username') }}">
+              <input type="email"  id="username" class="form-control" name="username" placeholder="Enter username" value="{{ old('username') }}">
             </div>
             <div class="form-group">
               <label for="Password:">Password:</label>

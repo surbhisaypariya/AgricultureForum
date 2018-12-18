@@ -41,6 +41,15 @@ return [
             'provider' => 'users',
         ],
 
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'user_profiles',
+        ],
+        'expert' => [
+            'driver' => 'session',
+            'provider' => 'expert_profiles',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -69,6 +78,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'user_profiles' => [
+            'driver' => 'eloquent',
+            'model' => App\user_profiles::class,
+        ],
+        'expert_profiles' => [
+            'driver' => 'eloquent',
+            'model' => App\expert_profile::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -94,6 +111,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'user_profiles' => [
+            'provider' => 'user_profiles',
             'table' => 'password_resets',
             'expire' => 60,
         ],

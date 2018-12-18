@@ -1,9 +1,9 @@
 <?php
 
-Route::get('/', function () {
-    // return view('welcome');
-    return view('expert.pages.login');
-});
+// Route::get('/', function () {
+//     // return view('welcome');
+//     return view('expert.pages.login');
+// });
 Auth::routes();
 
 route::group(['prifix' => 'admin','middleware' => 'auth'],function(){
@@ -22,6 +22,8 @@ route::group(['prifix' => 'admin','middleware' => 'auth'],function(){
 
 });
 
+
+Route::post('user_login','user\LoginUserController@showLoginForm');
 
 Route::resource('dashboard_user','user\dashboardController'); 
 
